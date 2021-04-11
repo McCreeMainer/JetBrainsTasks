@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="LexicographicOrderTaskTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-04-11T19:39:43" hostname="MZET" time="0.052">
+  <properties/>
+  <testcase name="test1()" classname="LexicographicOrderTaskTest" time="0.041"/>
+  <testcase name="test2()" classname="LexicographicOrderTaskTest" time="0.001"/>
+  <testcase name="test3()" classname="LexicographicOrderTaskTest" time="0.0"/>
+  <testcase name="test4()" classname="LexicographicOrderTaskTest" time="0.004"/>
+  <testcase name="test5()" classname="LexicographicOrderTaskTest" time="0.002"/>
+  <system-out><![CDATA[b, o, e, a, u, s
+Impossible
+Impossible
+Impossible
+а, и, о, д, з, п, у, л, м, т, с
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
