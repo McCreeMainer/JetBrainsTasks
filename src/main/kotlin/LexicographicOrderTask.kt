@@ -1,12 +1,35 @@
+fun main() {
+    print("Enter size of list: ")
+    val n: Int
+    try {
+        n = saveReadLine().toInt()
+    } catch (e: NumberFormatException) {
+        println("Not number")
+        return
+    }
+    val list = mutableListOf<String>()
+    repeat(n) {
+        list.add(saveReadLine())
+    }
+    println("Result: " + getAlphabet(list))
+}
+
+private fun saveReadLine(): String {
+    var result = readLine()
+    while (result.isNullOrBlank()) result = readLine()
+    return result
+}
+
 private var isPossible = true
 
 /**
  * This function has 2 stages:
- *      1. transforms input list of surnames in tree of chars (used recursive call of fun transformToNodes;
+ *      1. transforms input list of surnames in tree of chars (used recursive call of fun transformToNodes);
  *      2. makes breadth-first tree traversal to merge all nodes.
- * After all it autofill result with missing letters.
  *
- * P.s. I apologize for the not very detailed description, I ran out of time.
+ * On 2 stage the function takes all the descendant lists at the given level and separately tries to merge
+ * with the lists already considered (tries to find intersection of lists and then slice new list and insert
+ * in old list). Also here it checks for mismatches in intersected char sequences.
  */
 fun getAlphabet(list: List<String>): String {
 
@@ -81,6 +104,15 @@ private fun transformToNodes(list: List<String>): List<Node> {
     return transformToNodes(list, 0)
 }
 
+/**
+ * This function transform list of surnames in tree of chars (Using class Node as wrapper).
+ * If there are several surnames starting with the same letter, node will be instance of
+ * ParentNode and it will contains children (so until all descendants at the same level are
+ * unique).
+ *
+ * If some word is the beginning of another, it must come first, otherwise the flag isPossible
+ * will be set to false and the result will be returned immediately.
+ */
 private fun transformToNodes(list: List<String>, index: Int): List<Node> {
 
     val localList = mutableListOf<String>()
